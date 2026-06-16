@@ -27,7 +27,7 @@ const POLICIES = {
       },
       {
         heading: "Contact",
-        body: "For privacy-related questions, email us at privacy@nexusarabstore.com.",
+        body: "For privacy-related questions, email us at privacy@turbostore.com.",
       },
     ],
   },
@@ -38,7 +38,7 @@ const POLICIES = {
     sections: [
       {
         heading: "Acceptance of Terms",
-        body: "By using Nexus Arab Store, you agree to these Terms & Conditions. If you do not agree, please do not use our services.",
+        body: "By using TurboStore, you agree to these Terms & Conditions. If you do not agree, please do not use our services.",
       },
       {
         heading: "Account Responsibilities",
@@ -50,11 +50,11 @@ const POLICIES = {
       },
       {
         heading: "Intellectual Property",
-        body: "All content on Nexus Arab Store — including images, text, logos, and design — is our property and protected by copyright law.",
+        body: "All content on TurboStore — including images, text, logos, and design — is our property and protected by copyright law.",
       },
       {
         heading: "Limitation of Liability",
-        body: "Nexus Arab Store is not liable for indirect, incidental, or consequential damages arising from your use of our services.",
+        body: "TurboStore is not liable for indirect, incidental, or consequential damages arising from your use of our services.",
       },
     ],
   },

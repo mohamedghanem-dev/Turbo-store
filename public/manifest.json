@@ -1,13 +1,13 @@
 {
-  "name": "Nexus Arab Store — Apps, Games & Software",
-  "short_name": "Nexus Arab",
-  "description": "Nexus Arab Store — Download apps, modded games, software and CRM systems for Android, Windows and more, all in one place.",
+  "name": "TurboStore — Premium Shopping Experience",
+  "short_name": "TurboStore",
+  "description": "TurboStore — Discover premium products at unbeatable prices. Shop electronics, clothing, accessories and more.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#000000",
-  "theme_color": "#dc2626",
+  "theme_color": "#2563eb",
   "icons": [
     {
       "src": "./icons/icon-16x16.png",

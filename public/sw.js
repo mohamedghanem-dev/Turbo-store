@@ -1,4 +1,4 @@
-const CACHE_NAME = "nexusarab-cache-v2";
+const CACHE_NAME = "turbostore-cache-v2";
 
 // Core files that must be available offline immediately after install.
 // Built relative to the service worker's scope so this works both on the

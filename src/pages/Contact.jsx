@@ -10,8 +10,8 @@ const CONTACT_ITEMS = [
       </svg>
     ),
     label: "Email",
-    value: "support@nexusarabstore.com",
-    href: "mailto:support@nexusarabstore.com",
+    value: "support@turbostore.com",
+    href: "mailto:support@turbostore.com",
   },
   {
     icon: (

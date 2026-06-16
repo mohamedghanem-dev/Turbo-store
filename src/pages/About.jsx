@@ -31,7 +31,7 @@ const About = () => (
         We believe in better shopping
       </h1>
       <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
-        Nexus Arab Store was founded with a simple mission: make premium products accessible to everyone,
+        TurboStore was founded with a simple mission: make premium products accessible to everyone,
         with an experience that feels effortless and enjoyable.
       </p>
     </motion.div>
@@ -61,7 +61,7 @@ const About = () => (
       >
         <h2 className="section-heading mb-4">Our Mission</h2>
         <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
-          We started Nexus Arab Store because we believed the online shopping experience could be better —
+          We started TurboStore because we believed the online shopping experience could be better —
           more personal, more trustworthy, and more enjoyable.
         </p>
         <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">

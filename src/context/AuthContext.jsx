@@ -49,7 +49,7 @@ export const AuthProvider = ({ children }) => {
       const userData = data.data?.user ?? data.user ?? data;
       setUser(userData);
       localStorage.setItem("user", JSON.stringify(userData));
-      toast.success(`Welcome to Nexus Arab Store, ${userData.name}!`);
+      toast.success(`Welcome to TurboStore, ${userData.name}!`);
       return { success: true };
     } catch (error) {
       toast.error(error.message || "Registration failed");

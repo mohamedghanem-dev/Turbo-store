@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 
 export const CartContext = createContext(null);
 
-const STORAGE_KEY = "nexusarab_cart";
+const STORAGE_KEY = "turbostore_cart";
 
 const loadCartFromStorage = () => {
   try {

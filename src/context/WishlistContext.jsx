@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 
 export const WishlistContext = createContext(null);
 
-const STORAGE_KEY = "nexusarab_wishlist";
+const STORAGE_KEY = "turbostore_wishlist";
 
 const loadFromStorage = () => {
   try {

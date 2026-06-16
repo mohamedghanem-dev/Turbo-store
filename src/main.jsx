@@ -4,7 +4,6 @@ import "./index.css";
 import App from "./App.jsx";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import { AdminProvider } from "./context/AdminContext.jsx";
-import { AdminAuthProvider } from "./context/AdminAuthContext.jsx";
 import { CartProvider } from "./context/CartContext.jsx";
 import { WishlistProvider } from "./context/WishlistContext.jsx";
 import { ThemeProvider } from "./context/ThemeContext.jsx";
@@ -14,7 +13,6 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ThemeProvider>
       <AuthProvider>
-        <AdminAuthProvider>
         <AdminProvider>
           <CartProvider>
             <WishlistProvider>
@@ -41,7 +39,6 @@ createRoot(document.getElementById("root")).render(
             </WishlistProvider>
           </CartProvider>
         </AdminProvider>
-        </AdminAuthProvider>
       </AuthProvider>
     </ThemeProvider>
   </StrictMode>
