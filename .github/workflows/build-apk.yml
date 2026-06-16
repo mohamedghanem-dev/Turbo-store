@@ -1,0 +1,103 @@
+name: Build Turbo Store APK
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      # ── 1. Checkout ─────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ── 2. Node.js ──────────────────────────────────────────
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      # ── 3. Java ─────────────────────────────────────────────
+      - name: Setup Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      # ── 4. Android SDK ──────────────────────────────────────
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      # ── 5. Python deps ──────────────────────────────────────
+      - name: Install Pillow
+        run: pip install Pillow --quiet
+
+      # ── 6. Install & build web app ──────────────────────────
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build web app (Vite)
+        run: npm run build
+
+      # ── 7. Capacitor setup ──────────────────────────────────
+      - name: Install Capacitor packages
+        run: npm install @capacitor/core @capacitor/cli @capacitor/android @capacitor/assets
+
+      - name: Init Capacitor
+        run: npx cap init "Turbo Store" "dev.mohamedghanem.turbo" --web-dir dist
+
+      - name: Add Android platform
+        run: npx cap add android
+
+      - name: Sync Capacitor (copy web assets)
+        run: npx cap sync android
+
+      # ── 8. Icons & splash ───────────────────────────────────
+      - name: Resize & prepare icon
+        run: python3 resize_icon.py
+
+      - name: Generate Capacitor assets (icons / splash)
+        run: npx capacitor-assets generate --android
+
+      - name: Final Capacitor sync
+        run: npx cap sync android
+
+      # ── 9. Build APK ────────────────────────────────────────
+      - name: Build debug APK
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon --stacktrace
+
+      # ── 10. Rename APK with version & date ──────────────────
+      - name: Rename APK
+        run: |
+          DATE=$(date +'%Y%m%d-%H%M')
+          mv android/app/build/outputs/apk/debug/app-debug.apk \
+             android/app/build/outputs/apk/debug/turbo-store-${DATE}.apk
+          echo "APK_NAME=turbo-store-${DATE}.apk" >> $GITHUB_ENV
+
+      # ── 11. Upload APK artifact ─────────────────────────────
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Turbo-Store-APK
+          path: android/app/build/outputs/apk/debug/${{ env.APK_NAME }}
+          retention-days: 30
+
+      # ── 12. Summary ─────────────────────────────────────────
+      - name: Build summary
+        run: |
+          echo "## ✅ Build Complete" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Item | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| APK | \`${{ env.APK_NAME }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| Branch | \`${{ github.ref_name }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| Commit | \`${{ github.sha }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| Triggered by | ${{ github.actor }} |" >> $GITHUB_STEP_SUMMARY
